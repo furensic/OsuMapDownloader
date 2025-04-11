@@ -3,6 +3,7 @@ using OsuMapDownloader.Datatypes;
 
 namespace OsuMapDownloader.Definitions;
 
+// maybe i need to split this class into 2 sub classes as to documentation. theres User, User optional attributes and UserExtended
 public class OsuUser {
     [JsonProperty("avatar_url")]
     public string? AvatarUrl { get; set; } // maybe change to Uri type
