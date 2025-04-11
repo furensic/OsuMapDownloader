@@ -21,6 +21,7 @@ internal class QueryHelpers {
         var response = client.Execute(request);
 
         var deserialized = JsonConvert.DeserializeObject<OsuUser>(response.Content);
+        File.WriteAllText("test.json", response.Content); // just for debugging and stuff
         return deserialized;
     }
 }

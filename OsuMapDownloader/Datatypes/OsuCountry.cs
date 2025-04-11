@@ -4,8 +4,8 @@ namespace OsuMapDownloader.Datatypes;
 
 public class OsuCountry {
     [JsonProperty("code")]
-    public string code { get; set; }
+    public string Code { get; set; }
 
     [JsonProperty("name")]
-    public string name { get; set; }
+    public string Name { get; set; }
 }

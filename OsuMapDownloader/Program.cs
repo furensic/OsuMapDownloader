@@ -19,7 +19,7 @@ internal class Program {
 
         var query = new QueryHelpers(osuAuth.authGrant);
 
-        var getUser = query.GetUser("dressurf").Result; // get user peppy
+        var getUser = query.GetUser("peppy").Result; // get user peppy
         Console.WriteLine("Username: {0}\n"  +
                           "Join Date: {1}\n" +
                           "Osu Badge: {2}", getUser.Username, getUser.JoinDate, getUser.Badges[0].Description);
