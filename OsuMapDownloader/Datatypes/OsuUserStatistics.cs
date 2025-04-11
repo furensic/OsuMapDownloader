@@ -22,7 +22,7 @@ public class OsuUserStatistics {
     public int GlobalRank { get; set; }
     
     [JsonProperty("global_rank_exp")]
-    public int GlobalRankExp { get; set; }
+    public object GlobalRankExp { get; set; }
     
     [JsonProperty("pp")]
     public float Pp { get; set; }
@@ -43,7 +43,7 @@ public class OsuUserStatistics {
     public int PlayTime { get; set; }
     
     [JsonProperty("total_score")]
-    public int TotalScore { get; set; }
+    public object TotalScore { get; set; } // Int32 is too small it seems
     
     [JsonProperty("total_hits")]
     public int TotalHits { get; set; }

@@ -2,23 +2,12 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace OsuMapDownloader.API;
 
 public class OsuAuthentication {
-    public OsuAuthentication(int _clientId, string _clientSecret) {
-        clientId     = _clientId;
-        clientSecret = _clientSecret;
-
-        GenerateRandomState();
-        scope = "public";
-        Console.WriteLine(GetAuthorizationUrl());
-
-        code      = StartTcpServer();     // start TCP listener and wait for code to be returned
-        authGrant = GetAccessToken(code); // exchange code for access token
-    }
-
     // parameters for authorization request
     public int     clientId     { get; set; }
     public string? redirectUri  { get; set; } = "http://127.0.0.1:9000/";
@@ -33,11 +22,45 @@ public class OsuAuthentication {
 
     public OsuAuthorizationCodeGrant authGrant { get; set; } = new();
 
+    public OsuAuthentication(int _clientId, string _clientSecret) {
+        clientId     = _clientId;
+        clientSecret = _clientSecret;
+        
+        InitApi();
+    }
+
+    private void InitApi() {
+        // init state variable with random value
+        this.state = GenerateRandomState();
+        
+        // setup scopes
+        this.scope = "public";
+        
+        // check if token.json exists -> check if token is still valid -> use that token instead
+        if (File.Exists("token.json")) {
+            this.authGrant = JsonConvert.DeserializeObject<OsuAuthorizationCodeGrant>(File.ReadAllText("token.json"));
+            
+            // check if its valid ...
+        }
+        else {
+            // print out auth URL, gotta change this later idk
+            Console.WriteLine(GetAuthorizationUrl());
+        
+            // fetch code from redirect url
+            this.code = RedirectListener();
+        
+            // exchange code for access token
+            this.authGrant = GetAccessToken(this.code);
+        
+            // export tokens to json file
+            ExportAuthorizationCodeGrant();
+        }
+    }
+    
     private string GenerateRandomState() {
         // generate random GUID and cast it to string
         var guid = Guid.NewGuid();
-        state = guid.ToString("n");
-        return state;
+        return guid.ToString("n");
     }
 
     public string GetAuthorizationUrl() {
@@ -47,12 +70,7 @@ public class OsuAuthentication {
                 baseUri, clientId, redirectUri, responseType, scope, state);
     }
 
-    public void StartOauthFlow() {
-        // Start TCP Listener
-        code = StartTcpServer();
-    }
-
-    private string StartTcpServer() {
+    private string RedirectListener() {
         using (var listener = new TcpListener(IPAddress.Any, 9000)) {
             // create a TCP listener on port 9000
             listener.Start(); // start the listener
@@ -123,5 +141,11 @@ public class OsuAuthentication {
         if (response != null) return response;
 
         throw new Exception("Error while trying to get access token: response is null");
+    }
+
+    public void ExportAuthorizationCodeGrant() {
+        var SerializedToken = JsonConvert.SerializeObject(this.authGrant);
+
+        File.WriteAllText("token.json", SerializedToken);
     }
 }
