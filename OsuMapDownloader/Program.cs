@@ -23,6 +23,8 @@ internal class Program {
         var getUser = query.GetUser("dressurf").Result; // get user peppy
         Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(getUser, Formatting.Indented));
         
+        var getBeatmap = query.GetBeatmap("2007718").Result;
+        Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(getBeatmap, Formatting.Indented));
         // actually todo: implement logging
         // todo: resolve the objects in OsuUserStatistics and some other classes
         // todo: write some tests
