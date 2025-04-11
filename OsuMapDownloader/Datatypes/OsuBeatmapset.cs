@@ -5,57 +5,57 @@ namespace OsuMapDownloader.Datatypes;
 public class OsuBeatmapset {
     [JsonProperty("artist")]
     public string Artist { get; set; }
-    
+
     [JsonProperty("artist_unicode")]
     public string ArtistsUnicode { get; set; }
-    
+
     [JsonProperty("covers")]
     public OsuBeatmapCovers Covers { get; set; } // needs enum or smth
-    
+
     [JsonProperty("creator")]
-    public string Creator  { get; set; }
-    
+    public string Creator { get; set; }
+
     [JsonProperty("favourite_count")]
     public int FavouriteCount { get; set; }
-    
+
     [JsonProperty("id")]
     public int Id { get; set; }
-    
+
     [JsonProperty("nsfw")]
-    public bool Nsfw  { get; set; }
-    
+    public bool Nsfw { get; set; }
+
     [JsonProperty("offset")]
     public int Offset { get; set; }
-    
+
     [JsonProperty("play_count")]
     public int PlayCount { get; set; }
-    
+
     [JsonProperty("preview_url")]
-    public string PreviewUrl  { get; set; }
-    
+    public string PreviewUrl { get; set; }
+
     [JsonProperty("source")]
     public string Source { get; set; }
-    
+
     [JsonProperty("status")]
-    public OsuBeatmapRankStatus Status  { get; set; } // enum Status int to string
-    
+    public OsuBeatmapRankStatus Status { get; set; } // enum Status int to string
+
     [JsonProperty("spotlight")]
     public bool Spotlight { get; set; }
-    
+
     [JsonProperty("title")]
-    public string Title  { get; set; }
-    
+    public string Title { get; set; }
+
     [JsonProperty("title_unicode")]
-    public string TitleUnicode{ get; set; }
-    
+    public string TitleUnicode { get; set; }
+
     [JsonProperty("user_id")]
     public int UserId { get; set; }
-    
+
     [JsonProperty("video")]
-    public bool Video{ get; set; }
-    
+    public bool Video { get; set; }
+
     // optional Beatmap properties. Most unknown type
-    
+
     [JsonProperty("beatmaps")]
     public object Beatmaps { get; set; }
 

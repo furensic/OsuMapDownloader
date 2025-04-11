@@ -8,6 +8,13 @@ using RestSharp;
 namespace OsuMapDownloader.API;
 
 public class OsuAuthentication {
+    public OsuAuthentication(int _clientId, string _clientSecret) {
+        clientId     = _clientId;
+        clientSecret = _clientSecret;
+
+        InitApi();
+    }
+
     // parameters for authorization request
     public int     clientId     { get; set; }
     public string? redirectUri  { get; set; } = "http://127.0.0.1:9000/";
@@ -22,41 +29,34 @@ public class OsuAuthentication {
 
     public OsuAuthorizationCodeGrant authGrant { get; set; } = new();
 
-    public OsuAuthentication(int _clientId, string _clientSecret) {
-        clientId     = _clientId;
-        clientSecret = _clientSecret;
-        
-        InitApi();
-    }
-
     private void InitApi() {
         // init state variable with random value
-        this.state = GenerateRandomState();
-        
+        state = GenerateRandomState();
+
         // setup scopes
-        this.scope = "public";
-        
+        scope = "public";
+
         // check if token.json exists -> check if token is still valid -> use that token instead
         if (File.Exists("token.json")) {
-            this.authGrant = JsonConvert.DeserializeObject<OsuAuthorizationCodeGrant>(File.ReadAllText("token.json"));
-            
+            authGrant = JsonConvert.DeserializeObject<OsuAuthorizationCodeGrant>(File.ReadAllText("token.json"));
+
             // check if its valid ...
         }
         else {
             // print out auth URL, gotta change this later idk
             Console.WriteLine(GetAuthorizationUrl());
-        
+
             // fetch code from redirect url
-            this.code = RedirectListener();
-        
+            code = RedirectListener();
+
             // exchange code for access token
-            this.authGrant = GetAccessToken(this.code);
-        
+            authGrant = GetAccessToken(code);
+
             // export tokens to json file
             ExportAuthorizationCodeGrant();
         }
     }
-    
+
     private string GenerateRandomState() {
         // generate random GUID and cast it to string
         var guid = Guid.NewGuid();
@@ -144,7 +144,7 @@ public class OsuAuthentication {
     }
 
     public void ExportAuthorizationCodeGrant() {
-        var SerializedToken = JsonConvert.SerializeObject(this.authGrant);
+        var SerializedToken = JsonConvert.SerializeObject(authGrant);
 
         File.WriteAllText("token.json", SerializedToken);
     }

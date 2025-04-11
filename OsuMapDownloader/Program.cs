@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using OsuMapDownloader.API;
+﻿using OsuMapDownloader.API;
 
 namespace OsuMapDownloader;
 
@@ -24,14 +23,14 @@ internal class Program {
         var getUser = query.GetUser("dressurf").Result; // get user peppy
         Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(getUser, Formatting.Indented));
         */
-        
+
         var getBeatmap = query.GetBeatmap("2007718").Result;
         //Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(getBeatmap, Formatting.Indented));
-        
+
         var getBeatmapset = query.GetBeatmapset("1515555").Result;
         //Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(getBeatmapset, Formatting.Indented));
-        
-        
+
+
         // actually todo: implement logging
         // todo: resolve the objects in OsuUserStatistics and some other classes
         // todo: write some tests
