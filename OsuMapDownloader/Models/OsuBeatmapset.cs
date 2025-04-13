@@ -18,6 +18,9 @@ public class OsuBeatmapset {
     [JsonProperty("favourite_count")]
     public int FavouriteCount { get; set; }
 
+    [JsonProperty("hype")]
+    public object Hype { get; set; } // check this later
+
     [JsonProperty("id")]
     public int Id { get; set; }
 
@@ -55,7 +58,6 @@ public class OsuBeatmapset {
     public bool Video { get; set; }
 
     // optional Beatmap properties. Most unknown type
-
     [JsonProperty("beatmaps")]
     public object Beatmaps { get; set; }
 
@@ -101,11 +103,11 @@ public class OsuBeatmapset {
     [JsonProperty("related_users")]
     public object RelatedUsers { get; set; }
 
-    [JsonProperty("user")]
-    public object User { get; set; }
+    //[JsonProperty("user")]
+    //public object User { get; set; } // not sure if this is actually needed
 
     [JsonProperty("track_id")]
-    public object TrackId { get; set; }
+    public int TrackId { get; set; }
 }
 
 public enum OsuBeatmapRankStatus {
