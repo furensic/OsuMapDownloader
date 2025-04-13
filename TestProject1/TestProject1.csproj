@@ -18,4 +18,8 @@
         <Using Include="Xunit"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\OsuMapDownloader\OsuMapDownloader.csproj" />
+    </ItemGroup>
+
 </Project>

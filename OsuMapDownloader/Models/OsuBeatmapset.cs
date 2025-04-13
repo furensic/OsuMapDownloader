@@ -2,6 +2,7 @@
 using OsuMapDownloader.Definitions;
 
 namespace OsuMapDownloader.Datatypes;
+//[JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
 
 public class OsuBeatmapset {
     [JsonProperty("artist")]
@@ -41,7 +42,7 @@ public class OsuBeatmapset {
     public string Source { get; set; }
 
     [JsonProperty("status")]
-    public OsuBeatmapRankStatus Status { get; set; } // enum Status int to string
+    public string Status { get; set; } // enum Status int to string
 
     [JsonProperty("spotlight")]
     public bool Spotlight { get; set; }
@@ -58,54 +59,55 @@ public class OsuBeatmapset {
     [JsonProperty("video")]
     public bool Video { get; set; }
 
-    // optional Beatmap properties. Most unknown type
-    [JsonProperty("beatmaps")]
-    public object Beatmaps { get; set; }
+    // optional Beatmap properties. Most unknown type.
+    // so i thought id put a ? behind every variable because in the docu they're only "optional", so maybe prevents null variables
+    [JsonProperty("beatmaps", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Beatmaps { get; set; }
 
-    [JsonProperty("converts")]
-    public object Converts { get; set; }
+    [JsonProperty("converts", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Converts { get; set; }
 
-    [JsonProperty("current_nominations")]
-    public List<OsuBeatmapNomination> CurrentNominations { get; set; }
+    [JsonProperty("current_nominations", NullValueHandling=NullValueHandling.Ignore)]
+    public List<OsuBeatmapNomination>? CurrentNominations { get; set; }
+    
+    [JsonProperty("current_user_attributes", NullValueHandling=NullValueHandling.Ignore)]
+    public object? CurrentUserAttribute { get; set; }
 
-    [JsonProperty("current_user_attributes")]
-    public object CurrentUserAttribute { get; set; }
+    [JsonProperty("description", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Description { get; set; }
 
-    [JsonProperty("description")]
-    public object Description { get; set; }
+    [JsonProperty("discussions", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Discussions { get; set; }
 
-    [JsonProperty("discussions")]
-    public object Discussions { get; set; }
+    [JsonProperty("events", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Events { get; set; }
 
-    [JsonProperty("events")]
-    public object Events { get; set; }
+    [JsonProperty("genre", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Genre { get; set; }
 
-    [JsonProperty("genre")]
-    public object Genre { get; set; }
+    [JsonProperty("has_favourited", NullValueHandling=NullValueHandling.Ignore)]
+    public bool? HasFavourited { get; set; }
 
-    [JsonProperty("has_favourited")]
-    public bool HasFavourited { get; set; }
+    [JsonProperty("language", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Language { get; set; }
 
-    [JsonProperty("language")]
-    public object Language { get; set; }
+    [JsonProperty("nominations", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Nominations { get; set; }
 
-    [JsonProperty("nominations")]
-    public object Nominations { get; set; }
+    [JsonProperty("pack_tags", NullValueHandling=NullValueHandling.Ignore)]
+    public List<string>? PackTags { get; set; }
 
-    [JsonProperty("pack_tags")]
-    public List<string> PackTags { get; set; }
+    [JsonProperty("ratings", NullValueHandling=NullValueHandling.Ignore)]
+    public object? Ratings { get; set; }
 
-    [JsonProperty("ratings")]
-    public object Ratings { get; set; }
+    [JsonProperty("recent_favourites", NullValueHandling=NullValueHandling.Ignore)]
+    public object? RecentFavourites { get; set; }
 
-    [JsonProperty("recent_favourites")]
-    public object RecentFavourites { get; set; }
+    [JsonProperty("related_users", NullValueHandling=NullValueHandling.Ignore)]
+    public object? RelatedUsers { get; set; }
 
-    [JsonProperty("related_users")]
-    public object RelatedUsers { get; set; }
-
-    [JsonProperty("user")]
-    public OsuUser User { get; set; } // not sure if this is actually needed
+    [JsonProperty("user", NullValueHandling=NullValueHandling.Ignore)]
+    public OsuUser? User { get; set; } // not sure if this is actually needed
 
     [JsonProperty("track_id")]
     public int? TrackId { get; set; }

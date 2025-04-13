@@ -42,19 +42,20 @@ public class OsuAuthentication {
 
             // check if its valid ...
         }
-        else {
-            // print out auth URL, gotta change this later idk
-            Console.WriteLine(GetAuthorizationUrl());
+    }
 
-            // fetch code from redirect url
-            code = RedirectListener();
+    public void TokenJsonNotExist() {
+        // print out auth URL, gotta change this later idk
+        Console.WriteLine(GetAuthorizationUrl());
 
-            // exchange code for access token
-            authGrant = GetAccessToken(code);
+        // fetch code from redirect url
+        code = RedirectListener();
 
-            // export tokens to json file
-            ExportAuthorizationCodeGrant();
-        }
+        // exchange code for access token
+        authGrant = GetAccessToken(code);
+
+        // export tokens to json file
+        ExportAuthorizationCodeGrant();
     }
 
     private string GenerateRandomState() {

@@ -8,7 +8,7 @@ using RestSharp;
 
 namespace OsuMapDownloader.API;
 
-internal class QueryHelpers {
+public class QueryHelpers {
     // i want to switch RestSharp for IHttpClientFactory
     public RestClient                client;
     public JsonSerializer            serializer;

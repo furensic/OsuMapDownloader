@@ -8,7 +8,7 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     public OsuBeatmapsetAvailability Availability { get; set; }
 
     [JsonProperty("bpm")]
-    public float Bpm { get; set; }
+    public int Bpm { get; set; } // this is returned as int from API. maybe needs some casting or smth?
 
     [JsonProperty("can_be_hyped")]
     public bool CanBeHyped { get; set; }
@@ -61,8 +61,8 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     [JsonProperty("tags")]
     public string Tags { get; set; }
 
-    [JsonProperty("has_favourited")]
-    public object HasFavourited { get; set; }
+    [JsonProperty("has_favourited", NullValueHandling=NullValueHandling.Ignore)]
+    public object? HasFavourited { get; set; }
 
     [JsonProperty("related_tags")]
     public List<object> RelatedTags { get; set; }
