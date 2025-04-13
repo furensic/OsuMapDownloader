@@ -2,7 +2,7 @@
 
 namespace OsuMapDownloader.Definitions;
 
-public class OsuBeatmapExtended {
+public class OsuBeatmapExtended : OsuBeatmap {
     [JsonProperty("accuracy")]
     public float Accuracy { get; set; }
 

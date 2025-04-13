@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OsuMapDownloader.Definitions;
 
 namespace OsuMapDownloader.Datatypes;
 
@@ -103,11 +104,11 @@ public class OsuBeatmapset {
     [JsonProperty("related_users")]
     public object RelatedUsers { get; set; }
 
-    //[JsonProperty("user")]
-    //public object User { get; set; } // not sure if this is actually needed
+    [JsonProperty("user")]
+    public OsuUser User { get; set; } // not sure if this is actually needed
 
     [JsonProperty("track_id")]
-    public int TrackId { get; set; }
+    public int? TrackId { get; set; }
 }
 
 public enum OsuBeatmapRankStatus {

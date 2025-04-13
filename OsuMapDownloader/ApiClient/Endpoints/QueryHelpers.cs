@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OsuMapDownloader.Datatypes;
 using OsuMapDownloader.Definitions;
+using OsuMapDownloader.Models;
 using RestSharp;
 
 namespace OsuMapDownloader.API;
@@ -68,7 +69,7 @@ internal class QueryHelpers {
     }
 
     public async Task WriteJsonToFile(string JsonPlaintext, string FilePath) {
-        using (var file = File.Open(FilePath, FileMode.OpenOrCreate)) {
+        await using (var file = File.Open(FilePath, FileMode.OpenOrCreate)) {
              var FormattedJson = JToken.Parse(JsonPlaintext).ToString(Formatting.Indented);
              file.Write(Encoding.UTF8.GetBytes(FormattedJson), 0, Encoding.UTF8.GetByteCount(FormattedJson)); // brah
         }

@@ -1,13 +1,11 @@
 ﻿using Newtonsoft.Json;
+using OsuMapDownloader.Datatypes;
 
-namespace OsuMapDownloader.Datatypes;
+namespace OsuMapDownloader.Models;
 
 public class OsuBeatmapsetExtended : OsuBeatmapset {
-    [JsonProperty("availability.download_disabled")]
-    public bool AvailabilityDownloadDisabled { get; set; }
-
-    [JsonProperty("availability.more_information")]
-    public string? AvailabilityMoreInformation { get; set; }
+    [JsonProperty("availability")]
+    public OsuBeatmapsetAvailability Availability { get; set; }
 
     [JsonProperty("bpm")]
     public float Bpm { get; set; }
@@ -16,7 +14,7 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     public bool CanBeHyped { get; set; }
 
     [JsonProperty("deleted_at")]
-    public DateTime DeletedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
 
     [JsonProperty("discussion_enabled")]
     public bool DiscussionEnabled { get; set; } // deprecated
@@ -24,14 +22,11 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     [JsonProperty("discussion_locked")]
     public bool DiscussionLocked { get; set; }
 
-    [JsonProperty("hype.current")]
-    public int HypeCurrent { get; set; }
+    [JsonProperty("hype")]
+    public object Hype { get; set; }
 
-    [JsonProperty("hype.required")]
-    public int HypeRequired { get; set; }
-
-    [JsonProperty("is_scorable")]
-    public bool isScorable { get; set; }
+    [JsonProperty("is_scoreable")]
+    public bool isScoreable { get; set; }
 
     [JsonProperty("last_updated")]
     public DateTime LastUpdated { get; set; }
@@ -39,11 +34,11 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     [JsonProperty("legacy_thread_url")]
     public string? LegacyThreadUrl { get; set; }
 
-    [JsonProperty("nominations_summary.current")]
-    public int NominationsSummaryCurrent { get; set; }
+    [JsonProperty("nominations_summary")]
+    public object NominationsSummary { get; set; }
 
-    [JsonProperty("nominations_summary.required")]
-    public int NominationsSummaryRequired { get; set; }
+    [JsonProperty("current_nominations")]
+    public List<object> CurrentNominations { get; set; }
 
     [JsonProperty("ranked")]
     public int Ranked { get; set; } // need enum
@@ -68,4 +63,7 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
 
     [JsonProperty("has_favourited")]
     public object HasFavourited { get; set; }
+
+    [JsonProperty("related_tags")]
+    public List<object> RelatedTags { get; set; }
 }

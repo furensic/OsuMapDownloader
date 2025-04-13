@@ -1,4 +1,6 @@
 ﻿using OsuMapDownloader.API;
+using OsuMapDownloader.Datatypes;
+using OsuMapDownloader.Definitions;
 
 namespace OsuMapDownloader;
 
@@ -20,8 +22,8 @@ internal class Program {
         var query = new QueryHelpers(osuAuth.authGrant);
 
 
-        var getBeatmapset = await query.GetBeatmapset("241526");
-        
+        var getBeatmapset = await query.GetBeatmapset("1636169");
+
         // actually todo: implement logging
         // todo: resolve the objects in OsuUserStatistics and some other classes
         // todo: write some tests
