@@ -21,7 +21,7 @@ internal class Program {
         var query = new QueryHelpers(osuAuth.authGrant);
 
 
-        var getBeatmap = query.GetBeatmap("2504018");
+        await query.GetBeatmapsetsFromSearch(10);
 
         // actually todo: implement logging
         // todo: resolve the objects in OsuUserStatistics and some other classes
