@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OsuMapDownloader.Datatypes;
+using OsuMapDownloader.Models;
 
 namespace OsuMapDownloader.Definitions;
 
@@ -29,7 +30,7 @@ public class OsuBeatmap {
     public string Version { get; set; }
 
     [JsonProperty("beatmapset")]
-    public OsuBeatmapset
+    public OsuBeatmapsetExtended
             Beatmapset {
         get;
         set;
@@ -43,13 +44,13 @@ public class OsuBeatmap {
     public int CurrentUserPlayCount { get; set; }
 
     [JsonProperty("failtimes")]
-    public OsuFailtime Failtimes { get; set; } // missing
+    public object Failtimes { get; set; } // missing
 
     [JsonProperty("max_combo")]
     public int MaxCombo { get; set; }
 
     [JsonProperty("owners")]
-    public List<OsuUser>
+    public List<OsuBeatmapOwner>
             Users {
         get;
         set;

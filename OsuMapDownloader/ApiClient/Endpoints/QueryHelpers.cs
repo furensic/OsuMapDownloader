@@ -37,17 +37,17 @@ public class QueryHelpers {
         return DeserializeObject;
     }
 
-    public async Task<OsuBeatmap> GetBeatmap(string beatmapId) {
+    public async Task<OsuBeatmapExtended> GetBeatmap(string beatmapId) {
         var request = new RestRequest("beatmaps/" + beatmapId);
         request.AddHeader("Authorization", "Bearer " + token.access_token);
         request.AddHeader("Accept",        "application/json");
         request.AddHeader("Content-Type",  "application/json");
         var response = client.Execute(request);
 
-        await WriteJsonToFile(response.Content, "testOsuBeatmap.json");
+        await WriteJsonToFile(response.Content, "testOsuBeatmap_raw.json");
         // XD
-        var deserialized = JsonConvert.DeserializeObject<OsuBeatmap>(response.Content);
-        //File.WriteAllText("testBeatmap.json", response.Content); // just for debugging and stuff
+        var deserialized = JsonConvert.DeserializeObject<OsuBeatmapExtended>(response.Content);
+        await WriteJsonToFile(JsonConvert.SerializeObject(deserialized), "testOsuBeatmap.json");
         return deserialized;
     }
 
@@ -69,7 +69,7 @@ public class QueryHelpers {
     }
 
     public async Task WriteJsonToFile(string JsonPlaintext, string FilePath) {
-        await using (var file = File.Open(FilePath, FileMode.OpenOrCreate)) {
+        await using (var file = File.Open(FilePath, FileMode.Create)) {
              var FormattedJson = JToken.Parse(JsonPlaintext).ToString(Formatting.Indented);
              file.Write(Encoding.UTF8.GetBytes(FormattedJson), 0, Encoding.UTF8.GetByteCount(FormattedJson)); // brah
         }

@@ -37,7 +37,7 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     [JsonProperty("nominations_summary")]
     public object NominationsSummary { get; set; }
 
-    [JsonProperty("current_nominations")]
+    [JsonProperty("current_nominations", NullValueHandling=NullValueHandling.Ignore)]
     public List<object> CurrentNominations { get; set; }
 
     [JsonProperty("ranked")]
@@ -64,6 +64,6 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     [JsonProperty("has_favourited", NullValueHandling=NullValueHandling.Ignore)]
     public object? HasFavourited { get; set; }
 
-    [JsonProperty("related_tags")]
+    [JsonProperty("related_tags", NullValueHandling=NullValueHandling.Ignore)]
     public List<object> RelatedTags { get; set; }
 }

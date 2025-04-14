@@ -31,7 +31,7 @@ public class OsuBeatmapExtended : OsuBeatmap {
     public float Cs { get; set; }
 
     [JsonProperty("deleted_at")]
-    public string DeletedAt { get; set; } // maybe use Datetime
+    public string? DeletedAt { get; set; } // maybe use Datetime
 
     [JsonProperty("drain")]
     public float Drain { get; set; }
@@ -39,8 +39,8 @@ public class OsuBeatmapExtended : OsuBeatmap {
     [JsonProperty("hit_length")]
     public int HitLength { get; set; }
 
-    [JsonProperty("is_scorable")]
-    public bool IsScorable { get; set; }
+    [JsonProperty("is_scoreable")]
+    public bool IsScoreable { get; set; }
 
     [JsonProperty("last_updated")]
     public string LastUpdated { get; set; } // maybe use Datetime

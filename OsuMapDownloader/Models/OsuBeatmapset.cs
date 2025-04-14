@@ -68,7 +68,7 @@ public class OsuBeatmapset {
     public object? Converts { get; set; }
 
     [JsonProperty("current_nominations", NullValueHandling=NullValueHandling.Ignore)]
-    public List<OsuBeatmapNomination>? CurrentNominations { get; set; }
+    public List<object>? CurrentNominations { get; set; }
     
     [JsonProperty("current_user_attributes", NullValueHandling=NullValueHandling.Ignore)]
     public object? CurrentUserAttribute { get; set; }
