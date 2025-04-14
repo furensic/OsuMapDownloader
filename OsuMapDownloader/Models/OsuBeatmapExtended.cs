@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OsuMapDownloader.Definitions;
+namespace OsuMapDownloader.Models;
 
 public class OsuBeatmapExtended : OsuBeatmap {
     [JsonProperty("accuracy")]

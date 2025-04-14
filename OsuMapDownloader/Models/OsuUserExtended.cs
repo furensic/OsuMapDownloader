@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using OsuMapDownloader.Datatypes;
-using OsuMapDownloader.Definitions;
 
 namespace OsuMapDownloader.Models;
 

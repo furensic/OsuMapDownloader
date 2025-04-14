@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
-using OsuMapDownloader.API;
+using OsuMapDownloader.ApiClient.Authentication;
+using OsuMapDownloader.ApiClient.Endpoints;
 using Xunit.Abstractions;
 
 namespace TestProject1;
@@ -11,7 +12,7 @@ public class UnitTest1 {
 
 
     public UnitTest1(ITestOutputHelper testOutputHelper) {
-        this._testOutputHelper = testOutputHelper;
+        _testOutputHelper = testOutputHelper;
     }
 
     public void CompareJsonFiles(string path1, string path2) {
@@ -19,8 +20,8 @@ public class UnitTest1 {
         var file_raw = File.ReadAllText(path1);
         var file_cmp = File.ReadAllText(path2);
 
-        JToken expected = JToken.Parse(file_raw);
-        JToken actual   = JToken.Parse(file_cmp);
+        var expected = JToken.Parse(file_raw);
+        var actual   = JToken.Parse(file_cmp);
 
         var arePlainObjectsEqual = JToken.DeepEquals(expected, actual);
         _testOutputHelper.WriteLine("Equal check...");
@@ -33,8 +34,8 @@ public class UnitTest1 {
     // bro this is the most unmaintanable code ever. but i checked with 5 different maps, so it must work now ig
     [Fact]
     public async Task CompareMultipleJsonFiles() {
-        string clientId     = Environment.GetEnvironmentVariable("OSU_CLIENT_ID");
-        string clientSecret = Environment.GetEnvironmentVariable("OSU_CLIENT_SECRET");
+        var clientId     = Environment.GetEnvironmentVariable("OSU_CLIENT_ID");
+        var clientSecret = Environment.GetEnvironmentVariable("OSU_CLIENT_SECRET");
 
 
         if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
@@ -62,11 +63,11 @@ public class UnitTest1 {
         var getBeatmapset4 = await qh.GetBeatmapset("1234567");
         CompareJsonFiles("testOsuBeatmapset.json", "testOsuBeatmapset_raw.json");
     }
-    
+
     [Fact]
     public async Task CompareMultipleJsonFilesBeatmap() {
-        string clientId     = Environment.GetEnvironmentVariable("OSU_CLIENT_ID");
-        string clientSecret = Environment.GetEnvironmentVariable("OSU_CLIENT_SECRET");
+        var clientId     = Environment.GetEnvironmentVariable("OSU_CLIENT_ID");
+        var clientSecret = Environment.GetEnvironmentVariable("OSU_CLIENT_SECRET");
 
 
         if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
@@ -94,7 +95,7 @@ public class UnitTest1 {
         var getBeatmapset4 = await qh.GetBeatmap("1234567");
         CompareJsonFiles("testOsuBeatmap.json", "testOsuBeatmap_raw.json");
     }
-    
+
     // maybe do something like:
     // Init 1 osuAuth and 1 query Helper (until i use another structure for query Helper)
     // use those inside a TestBeatmap, TestBeatmapset, TestUser etc. and compare with CompareJsonFiles()

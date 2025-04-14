@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="API\" />
-      <Folder Include="Requests\" />
+        <Folder Include="API\"/>
+        <Folder Include="Requests\"/>
     </ItemGroup>
 
 </Project>

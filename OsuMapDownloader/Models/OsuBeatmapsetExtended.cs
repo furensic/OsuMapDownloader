@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using OsuMapDownloader.Datatypes;
 
 namespace OsuMapDownloader.Models;
 
@@ -37,7 +36,7 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     [JsonProperty("nominations_summary")]
     public object NominationsSummary { get; set; }
 
-    [JsonProperty("current_nominations", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("current_nominations", NullValueHandling = NullValueHandling.Ignore)]
     public List<object> CurrentNominations { get; set; }
 
     [JsonProperty("ranked")]
@@ -61,9 +60,9 @@ public class OsuBeatmapsetExtended : OsuBeatmapset {
     [JsonProperty("tags")]
     public string Tags { get; set; }
 
-    [JsonProperty("has_favourited", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("has_favourited", NullValueHandling = NullValueHandling.Ignore)]
     public object? HasFavourited { get; set; }
 
-    [JsonProperty("related_tags", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("related_tags", NullValueHandling = NullValueHandling.Ignore)]
     public List<object> RelatedTags { get; set; }
 }

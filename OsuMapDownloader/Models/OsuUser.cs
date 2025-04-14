@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using OsuMapDownloader.Datatypes;
 
-namespace OsuMapDownloader.Definitions;
+namespace OsuMapDownloader.Models;
 
 // maybe i need to split this class into 2 sub classes as to documentation. theres User, User optional attributes and UserExtended
 public class OsuUser {

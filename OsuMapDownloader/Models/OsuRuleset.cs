@@ -1,4 +1,4 @@
-﻿namespace OsuMapDownloader.Datatypes;
+﻿namespace OsuMapDownloader.Models;
 
 public class OsuRuleset {
 }

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using OsuMapDownloader.Definitions;
 
-namespace OsuMapDownloader.Datatypes;
+namespace OsuMapDownloader.Models;
 //[JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
 
 public class OsuBeatmapset {
@@ -61,52 +60,52 @@ public class OsuBeatmapset {
 
     // optional Beatmap properties. Most unknown type.
     // so i thought id put a ? behind every variable because in the docu they're only "optional", so maybe prevents null variables
-    [JsonProperty("beatmaps", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("beatmaps", NullValueHandling = NullValueHandling.Ignore)]
     public object? Beatmaps { get; set; }
 
-    [JsonProperty("converts", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("converts", NullValueHandling = NullValueHandling.Ignore)]
     public object? Converts { get; set; }
 
-    [JsonProperty("current_nominations", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("current_nominations", NullValueHandling = NullValueHandling.Ignore)]
     public List<object>? CurrentNominations { get; set; }
-    
-    [JsonProperty("current_user_attributes", NullValueHandling=NullValueHandling.Ignore)]
+
+    [JsonProperty("current_user_attributes", NullValueHandling = NullValueHandling.Ignore)]
     public object? CurrentUserAttribute { get; set; }
 
-    [JsonProperty("description", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
     public object? Description { get; set; }
 
-    [JsonProperty("discussions", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("discussions", NullValueHandling = NullValueHandling.Ignore)]
     public object? Discussions { get; set; }
 
-    [JsonProperty("events", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("events", NullValueHandling = NullValueHandling.Ignore)]
     public object? Events { get; set; }
 
-    [JsonProperty("genre", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("genre", NullValueHandling = NullValueHandling.Ignore)]
     public object? Genre { get; set; }
 
-    [JsonProperty("has_favourited", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("has_favourited", NullValueHandling = NullValueHandling.Ignore)]
     public bool? HasFavourited { get; set; }
 
-    [JsonProperty("language", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
     public object? Language { get; set; }
 
-    [JsonProperty("nominations", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("nominations", NullValueHandling = NullValueHandling.Ignore)]
     public object? Nominations { get; set; }
 
-    [JsonProperty("pack_tags", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("pack_tags", NullValueHandling = NullValueHandling.Ignore)]
     public List<string>? PackTags { get; set; }
 
-    [JsonProperty("ratings", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("ratings", NullValueHandling = NullValueHandling.Ignore)]
     public object? Ratings { get; set; }
 
-    [JsonProperty("recent_favourites", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("recent_favourites", NullValueHandling = NullValueHandling.Ignore)]
     public object? RecentFavourites { get; set; }
 
-    [JsonProperty("related_users", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("related_users", NullValueHandling = NullValueHandling.Ignore)]
     public object? RelatedUsers { get; set; }
 
-    [JsonProperty("user", NullValueHandling=NullValueHandling.Ignore)]
+    [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
     public OsuUser? User { get; set; } // not sure if this is actually needed
 
     [JsonProperty("track_id")]

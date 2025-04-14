@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using RestSharp;
 
-namespace OsuMapDownloader.API;
+namespace OsuMapDownloader.ApiClient.Authentication;
 
 public class OsuAuthentication {
     public OsuAuthentication(int _clientId, string _clientSecret) {
@@ -37,11 +37,10 @@ public class OsuAuthentication {
         scope = "public";
 
         // check if token.json exists -> check if token is still valid -> use that token instead
-        if (File.Exists("token.json")) {
-            authGrant = JsonConvert.DeserializeObject<OsuAuthorizationCodeGrant>(File.ReadAllText("token.json")) ?? throw new InvalidOperationException();
-
-            // check if its valid ...
-        }
+        if (File.Exists("token.json"))
+            authGrant = JsonConvert.DeserializeObject<OsuAuthorizationCodeGrant>(File.ReadAllText("token.json")) ??
+                        throw new InvalidOperationException();
+        // check if its valid ...
     }
 
     public void TokenJsonNotExist() {
@@ -95,10 +94,10 @@ public class OsuAuthentication {
                 // this function will never exit. Need to find a fix for this later so that the TCP Listener
                 // runs in the background and just returns the "code" from the URL parameters back to a function to process
                 var HtmlConnectionClose = "HTTP/1.1 200 OK\r\n"         +
-                                      "Content-Type: text/html\r\n" +
-                                      "Connection: close\r\n"       +
-                                      "\r\n"                        +
-                                      "<html><body><h1>Authorization Complete, please close this window!</h1></body></html>";
+                                          "Content-Type: text/html\r\n" +
+                                          "Connection: close\r\n"       +
+                                          "\r\n"                        +
+                                          "<html><body><h1>Authorization Complete, please close this window!</h1></body></html>";
                 var ResponseBytes =
                         Encoding.UTF8.GetBytes(HtmlConnectionClose); // convert the response message to a byte array
                 ClientStream.Write(ResponseBytes, 0,
@@ -112,7 +111,7 @@ public class OsuAuthentication {
     private string GetCodeFromUrlParameter(string HttpRequestString) {
         // Use regex to extract the "code" parameter from the URL
         var RegexPattern = new Regex(@"code=(?<code>\S*)");
-        var RegexMatch = RegexPattern.Match(HttpRequestString);
+        var RegexMatch   = RegexPattern.Match(HttpRequestString);
 
         if (RegexMatch.Success) return RegexMatch.Groups["code"].Value; // bruh
         return string.Empty;

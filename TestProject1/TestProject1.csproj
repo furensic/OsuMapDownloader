@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\OsuMapDownloader\OsuMapDownloader.csproj" />
+        <ProjectReference Include="..\OsuMapDownloader\OsuMapDownloader.csproj"/>
     </ItemGroup>
 
 </Project>

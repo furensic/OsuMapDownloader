@@ -1,12 +1,11 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using OsuMapDownloader.Datatypes;
-using OsuMapDownloader.Definitions;
+using OsuMapDownloader.ApiClient.Authentication;
 using OsuMapDownloader.Models;
 using RestSharp;
 
-namespace OsuMapDownloader.API;
+namespace OsuMapDownloader.ApiClient.Endpoints;
 
 public class QueryHelpers {
     // i want to switch RestSharp for IHttpClientFactory
@@ -32,7 +31,8 @@ public class QueryHelpers {
         Console.WriteLine(JsonConvert.DeserializeObject(response.Content));
 
         await WriteJsonToFile(response.Content, "testOsuUser.json");
-        var DeserializeObject = JsonConvert.DeserializeObject<OsuUser>(response.Content) ?? throw new NullReferenceException();
+        var DeserializeObject = JsonConvert.DeserializeObject<OsuUser>(response.Content) ??
+                                throw new NullReferenceException();
 
         return DeserializeObject;
     }
@@ -57,7 +57,7 @@ public class QueryHelpers {
         request.AddHeader("Accept",        "application/json");
         request.AddHeader("Content-Type",  "application/json");
         var response = client.Execute(request);
-        
+
         await WriteJsonToFile(response.Content, "testOsuBeatmapset_raw.json");
 
         Console.WriteLine("testest1");
@@ -70,8 +70,8 @@ public class QueryHelpers {
 
     public async Task WriteJsonToFile(string JsonPlaintext, string FilePath) {
         await using (var file = File.Open(FilePath, FileMode.Create)) {
-             var FormattedJson = JToken.Parse(JsonPlaintext).ToString(Formatting.Indented);
-             file.Write(Encoding.UTF8.GetBytes(FormattedJson), 0, Encoding.UTF8.GetByteCount(FormattedJson)); // brah
+            var FormattedJson = JToken.Parse(JsonPlaintext).ToString(Formatting.Indented);
+            file.Write(Encoding.UTF8.GetBytes(FormattedJson), 0, Encoding.UTF8.GetByteCount(FormattedJson)); // brah
         }
     }
 }

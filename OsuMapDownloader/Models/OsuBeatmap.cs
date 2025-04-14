@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
-using OsuMapDownloader.Datatypes;
-using OsuMapDownloader.Models;
 
-namespace OsuMapDownloader.Definitions;
+namespace OsuMapDownloader.Models;
 
 public class OsuBeatmap {
     [JsonProperty("beatmapset_id")]

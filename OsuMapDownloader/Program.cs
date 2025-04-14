@@ -1,6 +1,5 @@
-﻿using OsuMapDownloader.API;
-using OsuMapDownloader.Datatypes;
-using OsuMapDownloader.Definitions;
+﻿using OsuMapDownloader.ApiClient.Authentication;
+using OsuMapDownloader.ApiClient.Endpoints;
 
 namespace OsuMapDownloader;
 

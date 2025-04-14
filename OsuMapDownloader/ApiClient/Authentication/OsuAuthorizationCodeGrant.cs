@@ -1,4 +1,4 @@
-﻿namespace OsuMapDownloader.API;
+﻿namespace OsuMapDownloader.ApiClient.Authentication;
 
 public class OsuAuthorizationCodeGrant {
     // parameters for Authorization Code Grant response

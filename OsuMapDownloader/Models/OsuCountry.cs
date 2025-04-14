@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OsuMapDownloader.Datatypes;
+namespace OsuMapDownloader.Models;
 
 public class OsuCountry {
     [JsonProperty("code")]
