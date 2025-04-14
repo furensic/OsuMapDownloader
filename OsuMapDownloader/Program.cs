@@ -18,11 +18,10 @@ internal class Program {
         //create new instance of OsuAuthentication and pass clientId and client Secret
         var osuAuth = new OsuAuthentication(int.Parse(clientId), clientSecret);
 
-        var query = new QueryHelpers(osuAuth.authGrant);
+        var userQuery = new Users(osuAuth.authGrant);
 
-
-        await query.GetBeatmapsetsFromSearch(10);
-
+        var Test = await userQuery.GetOwnData("mania");
+        
         // actually todo: implement logging
         // todo: resolve the objects in OsuUserStatistics and some other classes
         // todo: write some tests

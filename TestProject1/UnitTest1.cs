@@ -100,4 +100,32 @@ public class UnitTest1 {
     // Init 1 osuAuth and 1 query Helper (until i use another structure for query Helper)
     // use those inside a TestBeatmap, TestBeatmapset, TestUser etc. and compare with CompareJsonFiles()
     // Need to reduce redundant code, somehow
+
+    [Fact]
+    public async Task TestUserEndpoint() {
+        var clientId     = Environment.GetEnvironmentVariable("OSU_CLIENT_ID");
+        var clientSecret = Environment.GetEnvironmentVariable("OSU_CLIENT_SECRET");
+
+
+        if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
+            throw new InvalidOperationException(
+                    "OSU_CLIENT_ID or OSU_CLIENT_SECRET environment variables are not set.");
+
+        _testOutputHelper.WriteLine($"client id: {clientId}\nclient secret: {clientSecret}");
+
+        //create new instance of OsuAuthentication and pass clientId and client Secret
+        osuAuth = new OsuAuthentication(int.Parse(clientId), clientSecret);
+        var userQuery = new Users(osuAuth.authGrant);
+        
+        var own = await userQuery.GetOwnData("mania");
+
+        if (own == null) {
+            _testOutputHelper.WriteLine("User not found");
+            Assert.True(false, $"User not found: {own}");
+        }
+        else {
+            _testOutputHelper.WriteLine("User found");
+            Assert.True(true, $"User found: {own}");
+        }
+    }
 }
