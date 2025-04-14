@@ -51,16 +51,16 @@ public class UnitTest1 {
         qh = new QueryHelpers(osuAuth.authGrant);
 
         var getBeatmapset1 = await qh.GetBeatmapset("2214270");
-        CompareJsonFiles("testOsuBeatmap.json", "testOsuBeatmap_raw.json");
+        CompareJsonFiles("testOsuBeatmapset.json", "testOsuBeatmapset_raw.json");
 
         var getBeatmapset2 = await qh.GetBeatmapset("452051");
-        CompareJsonFiles("testOsuBeatmap.json", "testOsuBeatmap_raw.json");
+        CompareJsonFiles("testOsuBeatmapset.json", "testOsuBeatmapset_raw.json");
 
         var getBeatmapset3 = await qh.GetBeatmapset("1556085");
-        CompareJsonFiles("testOsuBeatmap.json", "testOsuBeatmap_raw.json");
+        CompareJsonFiles("testOsuBeatmapset.json", "testOsuBeatmapset_raw.json");
 
         var getBeatmapset4 = await qh.GetBeatmapset("1234567");
-        CompareJsonFiles("testOsuBeatmap.json", "testOsuBeatmap_raw.json");
+        CompareJsonFiles("testOsuBeatmapset.json", "testOsuBeatmapset_raw.json");
     }
     
     [Fact]
